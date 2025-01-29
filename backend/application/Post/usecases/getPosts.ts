@@ -14,7 +14,7 @@ export class GetPostsUseCase implements GetPostsPort {
 	async getAll() {
 		try {
 			const posts = await this.postRepository.getAll()
-			return posts?.map((post) => PostMapper.toUI(post))
+			return posts.map((post) => PostMapper.toUI(post))
 		} catch (error: any) {
 			throw new UnCaughtError(error.message, {})
 		}

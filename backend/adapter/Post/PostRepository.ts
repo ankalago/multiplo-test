@@ -45,18 +45,7 @@ export class PostRepository implements PostRepositoryPort {
 			if (post) {
 				return new Post(post.title, post.image, post.id)
 			}
-			throw new NotFoundError('post not found', 404)
-		} catch (error: any) {
-			throw new UnCaughtError(error.message, { id })
-		}
-	}
-	async delete(id: string) {
-		try {
-			let post = await this.model.delete({ where: { id: id } })
-			if (!post) {
-				throw new NotFoundError('post not found', 404)
-			}
-			return true
+			throw new NotFoundError('Post not found', 404)
 		} catch (error: any) {
 			throw new UnCaughtError(error.message, { id })
 		}
