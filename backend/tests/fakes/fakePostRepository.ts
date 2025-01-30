@@ -6,8 +6,10 @@ export class FakePostRepository {
 		new Post(
 			'title',
 			'https://images.unsplash.com/photo-1675954099202-248ea9d6930e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=webp&fit=crop&w=900&q=100',
+			'filterOriginal',
 			'1',
 			new Date(),
+			false,
 		),
 	]
 	async getAll(): Promise<Post[]> {

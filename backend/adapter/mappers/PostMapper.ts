@@ -6,6 +6,8 @@ export class PostMapper {
 			id: post.id as string,
 			title: post.title,
 			image: post.image,
+			filter: post.filter,
+			like: post.like,
 			createdAt: post.createdAt,
 		}
 	}

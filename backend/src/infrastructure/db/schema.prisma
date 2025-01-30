@@ -14,5 +14,7 @@ model Post {
   id        String   @id @default(uuid())
   title     String
   image     String
+  filter    String   @default("filterOriginal")
+  like      Boolean  @default(false)
   createdAt DateTime @default(now())
 }

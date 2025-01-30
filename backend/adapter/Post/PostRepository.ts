@@ -19,7 +19,7 @@ export class PostRepository implements PostRepositoryPort {
 	async getAll() {
 		try {
 			let newPost = await this.model.findMany()
-			return newPost.map((post) => new Post(post.title, post.image, post.id, post.createdAt))
+			return newPost.map((post) => new Post(post.title, post.image, post.filter, post.id, post.createdAt, post.like))
 		} catch (error: any) {
 			throw new UnCaughtError(error.message, {})
 		}
@@ -31,10 +31,11 @@ export class PostRepository implements PostRepositoryPort {
 					id: post.id,
 					title: post.title,
 					image: post.image,
+					filter: post.filter,
 					createdAt: post.createdAt,
 				},
 			})
-			return new Post(newPost.title, newPost.image, newPost.id)
+			return new Post(newPost.title, newPost.image, newPost.filter, newPost.id)
 		} catch (error: any) {
 			throw new UnCaughtError(error.message, 400)
 		}
@@ -43,7 +44,7 @@ export class PostRepository implements PostRepositoryPort {
 		try {
 			let post = await this.model.findUnique({ where: { id: id } })
 			if (post) {
-				return new Post(post.title, post.image, post.id)
+				return new Post(post.title, post.image, post.filter, post.id, post.createdAt, post.like)
 			}
 			throw new NotFoundError('Post not found', 404)
 		} catch (error: any) {

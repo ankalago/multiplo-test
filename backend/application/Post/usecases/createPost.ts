@@ -14,16 +14,17 @@ export class CreatePostUseCase implements CreatePostPort {
 		this.postRepository = postRepository
 	}
 	async create(postCreateData: IPostCreate) {
-		if (!postCreateData.title && !postCreateData.image) {
-			throw new UnCaughtError('Title and image are required', { postCreateData })
+		if (!postCreateData.title && !postCreateData.image && !postCreateData.filter) {
+			throw new UnCaughtError('Title, image or filter are required', { postCreateData })
 		}
 		try {
-			const post = new Post(postCreateData.title, postCreateData.image, uuidV4(), new Date())
+			const post = new Post(postCreateData.title, postCreateData.image, postCreateData.filter, uuidV4(), new Date())
 
 			const persist = await this.postRepository.create({
 				id: post.id as string,
 				title: post.title,
 				image: post.image,
+				filter: post.filter,
 				createdAt: post.createdAt as Date,
 			})
 			return PostMapper.toUI(persist)

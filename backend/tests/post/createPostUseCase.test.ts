@@ -18,6 +18,7 @@ describe('Create Post', () => {
 			title: 'Post 2',
 			image:
 				'https://images.unsplash.com/photo-1675954099294-3d31ed3cc107?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=webp&fit=crop&w=900&q=100',
+			filter: 'filterOriginal',
 		})
 		expect(post).toHaveProperty('title')
 		expect(post).toHaveProperty('image')
@@ -30,8 +31,21 @@ describe('Create Post', () => {
 			createPostUseCase.create({
 				title: 'Post 2',
 				image: '',
+				filter: 'filterOriginal',
 			}),
 		).rejects.toThrow('Image is required')
+	})
+
+	it('Should return error when filter is empty', async () => {
+		const createPostUseCase = new CreatePostUseCase(postRepository)
+		await expect(
+			createPostUseCase.create({
+				title: 'Post 2',
+				image:
+					'https://images.unsplash.com/photo-1675954099294-3d31ed3cc107?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=webp&fit=crop&w=900&q=100',
+				filter: '',
+			}),
+		).rejects.toThrow('Filter is required')
 	})
 
 	it('Should return error when title is empty', async () => {
@@ -41,6 +55,7 @@ describe('Create Post', () => {
 				title: '',
 				image:
 					'https://images.unsplash.com/photo-1675954099294-3d31ed3cc107?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=webp&fit=crop&w=900&q=100',
+				filter: 'filterOriginal',
 			}),
 		).rejects.toThrow('Title is required')
 	})
@@ -51,7 +66,8 @@ describe('Create Post', () => {
 			createPostUseCase.create({
 				title: undefined as unknown as string,
 				image: undefined as unknown as string,
+				filter: undefined as unknown as string,
 			}),
-		).rejects.toThrow('Title and image are required')
+		).rejects.toThrow('Title, image or filter are required')
 	})
 })

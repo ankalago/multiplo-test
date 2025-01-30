@@ -1,13 +1,15 @@
-import { IPost, PostId, PostTitle, PostImage } from './IPost'
+import { IPost, PostId, PostTitle, PostImage, PostLike, PostFilter } from './IPost'
 import { UnprocessableError } from '../../../src/errors/Unprocessable'
 
 export class Post implements IPost {
 	public id?: PostId
 	public title: PostTitle
 	public image: PostImage
+	public filter: PostFilter
+	public like?: PostLike
 	public createdAt?: Date
 
-	constructor(title: PostTitle, image: PostImage, id?: string, createdAt?: Date) {
+	constructor(title: PostTitle, image: PostImage, filter: PostFilter, id?: string, createdAt?: Date, like?: PostLike) {
 		if (id) {
 			this.id = id
 		}
@@ -20,8 +22,13 @@ export class Post implements IPost {
 		if (image.length < 10) {
 			throw new UnprocessableError('Image is required', { image })
 		}
+		if (filter.length < 10) {
+			throw new UnprocessableError('Filter is required', { filter })
+		}
 		this.title = title
 		this.image = image
+		this.like = like
+		this.filter = filter
 		this.createdAt = createdAt
 	}
 }

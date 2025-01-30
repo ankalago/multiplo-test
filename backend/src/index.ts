@@ -9,7 +9,7 @@ app.use(httpLogger)
 app.use(express.json())
 
 app.get('/', (_req: Request, res: Response) => {
-	res.send('Hello World!').status(200)
+	res.send('OK').status(200)
 })
 app.use(router)
 
