@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import { injectable } from 'tsyringe'
-import { IPostCreateRepository } from '../../application/Post/domain/IPost'
+import { IPostCreateRepository, IPostUpdateRepository } from '../../application/Post/domain/IPost'
 import { Post } from '../../application/Post/domain/Post'
 import { PrismaClient } from '@prisma/client'
 import { PostRepositoryPort } from '../../application/Post/port/PostRepositoryPort'
@@ -18,7 +18,7 @@ export class PostRepository implements PostRepositoryPort {
 	}
 	async getAll() {
 		try {
-			let newPost = await this.model.findMany()
+			const newPost = await this.model.findMany()
 			return newPost.map((post) => new Post(post.title, post.image, post.filter, post.id, post.createdAt, post.like))
 		} catch (error: any) {
 			throw new UnCaughtError(error.message, {})
@@ -26,7 +26,7 @@ export class PostRepository implements PostRepositoryPort {
 	}
 	async create(post: IPostCreateRepository) {
 		try {
-			let newPost = await this.model.create({
+			const newPost = await this.model.create({
 				data: {
 					id: post.id,
 					title: post.title,
@@ -42,11 +42,33 @@ export class PostRepository implements PostRepositoryPort {
 	}
 	async findById(id: string) {
 		try {
-			let post = await this.model.findUnique({ where: { id: id } })
+			const post = await this.model.findUnique({ where: { id: id } })
 			if (post) {
 				return new Post(post.title, post.image, post.filter, post.id, post.createdAt, post.like)
 			}
 			throw new NotFoundError('Post not found', 404)
+		} catch (error: any) {
+			throw new UnCaughtError(error.message, { id })
+		}
+	}
+	async updateById(id: string, post: IPostUpdateRepository) {
+		try {
+			const postData = this.findById(id)
+			if (!postData) {
+				throw new NotFoundError('Post not found', 404)
+			}
+			const updatePost = await this.model.update({
+				where: { id: id },
+				data: post,
+			})
+			return new Post(
+				updatePost.title,
+				updatePost.image,
+				updatePost.filter,
+				updatePost.id,
+				updatePost.createdAt,
+				updatePost.like,
+			)
 		} catch (error: any) {
 			throw new UnCaughtError(error.message, { id })
 		}

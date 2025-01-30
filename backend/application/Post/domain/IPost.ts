@@ -19,10 +19,19 @@ export interface IPostCreate {
 	filter: PostFilter
 }
 
+export interface IPostUpdate {
+	title?: PostTitle
+	image?: PostImage
+	filter?: PostFilter
+	like?: PostLike
+}
+
 export interface IPostCreateRepository extends IPostCreate {
 	id: PostId
 	createdAt: Date
 }
+
+export interface IPostUpdateRepository extends IPostUpdate {}
 
 export interface IPostToUI {
 	id: PostId

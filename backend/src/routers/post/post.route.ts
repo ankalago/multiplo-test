@@ -27,4 +27,12 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
 	}
 })
 
+router.patch('/:id', async (req: Request, res: Response): Promise<void> => {
+	try {
+		res.status(200).json(await postController.update(req.params.id, req.body))
+	} catch (error: any) {
+		res.status(error.status).json({ error: error.message })
+	}
+})
+
 export default router
