@@ -30,7 +30,7 @@ npm ci
 
 ## Generate types of Prisma
 
-```bash
+```
 cd backend/src/infrastructure/db/ && npx prisma generate && cd -
 ```
 
@@ -49,7 +49,7 @@ npm run test
 ## Run unit coverage
 
 ```
-cd frontend && npm run e2e
+cd frontend && npm run e2e && cd -
 ```
 
 ## Run Cypress (visual)

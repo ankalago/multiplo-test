@@ -1,11 +1,12 @@
 import { render, screen, act } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, EnhancedStore } from '@reduxjs/toolkit'
 import CardContainer from '../CardContainer'
 import { BrowserRouter as Router } from 'react-router-dom'
 import multigramSlice from '../../../store/states/multigram'
 import MockAdapter from 'axios-mock-adapter'
 import axios from 'axios'
+import { AppStore } from '../../../store/store'
 
 jest.mock('react-i18next', () => ({
 	useTranslation: () => ({
@@ -19,15 +20,24 @@ mock
 	.reply(200, { data: [{ id: '1', title: 'Post 1', image: 'Image 1', filter: 'filterOriginal', like: true }] })
 
 describe('CardContainer Component', () => {
-	let store: any
+	let store: EnhancedStore<AppStore>
 
 	beforeEach(() => {
-		store = configureStore({
+		store = configureStore<AppStore>({
 			reducer: {
 				multigram: multigramSlice,
 			},
 			preloadedState: {
-				multigram: [{ id: '1', title: 'Post 1', image: 'Image 1', filter: 'filterOriginal', like: true }],
+				multigram: [
+					{
+						id: '1',
+						title: 'Post 1',
+						image: 'Image 1',
+						filter: 'filterOriginal',
+						like: true,
+						createdAt: new Date().getTime(),
+					},
+				],
 			},
 		})
 	})

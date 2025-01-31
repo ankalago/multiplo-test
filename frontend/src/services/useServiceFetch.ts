@@ -1,13 +1,11 @@
 import { setData } from '../store/states/multigram'
-import { useDispatch, useSelector } from 'react-redux'
-import { mutate } from 'swr'
+import { useDispatch } from 'react-redux'
 import { AxiosServices } from '../lib/axiosServices'
 import useSWRMutation from 'swr/mutation'
 import { useEffect } from 'react'
-import { IMultigram } from '../entities/multigram.ts'
-import { AppStore } from '../store/store.ts'
+import { IMultigram } from '../entities/multigram'
 
-export const useServiceFetch = <T, U extends IMultigram>() => {
+export const useServiceFetch = <U extends IMultigram>() => {
 	const axiosInstance = AxiosServices.getInstance()
 	const dispatch = useDispatch()
 

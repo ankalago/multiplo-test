@@ -2,12 +2,13 @@ import { render, screen, fireEvent, act, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, EnhancedStore } from '@reduxjs/toolkit'
 import Add from '../Add'
 import multigramSlice from '../../../../store/states/multigram'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
+import { AppStore } from '../../../../store/store'
 
 jest.mock('react-i18next', () => ({
 	useTranslation: () => ({
@@ -34,11 +35,11 @@ const renderComponent = (store: any) =>
 	)
 
 describe('Add Component', () => {
-	let store: any
+	let store: EnhancedStore<AppStore>
 	const mockNavigate = useNavigate as jest.Mock
 
 	beforeEach(() => {
-		store = configureStore({
+		store = configureStore<AppStore>({
 			reducer: {
 				multigram: multigramSlice,
 			},

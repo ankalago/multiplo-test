@@ -8,7 +8,7 @@ import Filters from '../../Filters'
 import { useNavigate } from 'react-router-dom'
 import { WrapperFilterImage } from './styles'
 import { useTranslation } from 'react-i18next'
-import { useServiceFetch } from '../../../services/useServiceFetch.ts'
+import { useServiceFetch } from '../../../services/useServiceFetch'
 
 type Props = {}
 

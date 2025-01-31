@@ -1,7 +1,7 @@
 import { render, screen, act } from '@testing-library/react'
 import Home from '../Home'
 import { Provider } from 'react-redux'
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, EnhancedStore } from '@reduxjs/toolkit'
 import { BrowserRouter as Router } from 'react-router-dom'
 import multigramSlice from '../../../../store/states/multigram'
 import { AppStore } from '../../../../store/store'
@@ -20,15 +20,24 @@ mock
 mock.onPost('http://localhost:3000/api/v1/post').reply(200, { data: 'response' })
 
 describe('Home Component', () => {
-	let store: AppStore
+	let store: EnhancedStore<AppStore>
 
 	beforeEach(() => {
-		store = configureStore({
+		store = configureStore<AppStore>({
 			reducer: {
 				multigram: multigramSlice,
 			},
 			preloadedState: {
-				multigram: [{ id: '1', title: 'Post 1', image: 'Image 1', filter: 'filterOriginal', like: true }],
+				multigram: [
+					{
+						id: '1',
+						title: 'Post 1',
+						image: 'Image 1',
+						filter: 'filterOriginal',
+						like: true,
+						createdAt: new Date().getTime(),
+					},
+				],
 			},
 		})
 	})

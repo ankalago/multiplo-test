@@ -6,8 +6,10 @@
     "test": "npm test -ws",
     "back:dev": "cd backend && npm run dev",
     "front:dev": "cd frontend && sleep 1 && npm run dev",
-    "build": "echo \"No build script defined\"",
-    "dev": "npm-run-all build --parallel back:dev front:dev",
+    "dev": "npm-run-all --parallel back:dev front:dev",
+    "back:build": "cd backend && npm run build",
+    "front:build": "cd frontend && npm run build",
+    "build": "npm-run-all --parallel back:build front:build",
     "format": "npx biome format --write ./backend/ ./frontend/"
   },
   "workspaces": [

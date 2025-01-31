@@ -1,12 +1,12 @@
 import { FC } from 'react'
 import { classNames } from '../../utils/utils'
-import { IMultigram } from '../../entities/multigram.ts'
-import { useTimeAgo } from '../../hooks/useTimeAgo.ts'
+import { IMultigram } from '../../entities/multigram'
+import { useTimeAgo } from '../../hooks/useTimeAgo'
 import { useTranslation } from 'react-i18next'
 import Filter from '../Filter/Filter'
-import { LikeComponent } from '../Pages/Home/styles.tsx'
+import { LikeComponent } from '../Pages/Home/styles'
 import { useNavigate } from 'react-router-dom'
-import { useServiceFetch } from '../../services/useServiceFetch.ts'
+import { useServiceFetch } from '../../services/useServiceFetch'
 
 type Props = {
 	post: IMultigram
@@ -18,11 +18,11 @@ const Card: FC<Props> = ({ post, enableLink = true }) => {
 	const { updatePost } = useServiceFetch()
 	const navigate = useNavigate()
 	const { t } = useTranslation()
-	const handleLike = async (id: number | undefined, like: boolean) => {
+	const handleLike = async (id: string | undefined, like: boolean) => {
 		await updatePost(String(id), like)
 	}
 
-	const handleClick = (id: number | undefined) => {
+	const handleClick = (id: string | undefined) => {
 		navigate(`/detail/${id}`)
 	}
 
@@ -41,6 +41,7 @@ const Card: FC<Props> = ({ post, enableLink = true }) => {
 				<div
 					className={`h-full w-full ${enableLink ? 'cursor-pointer' : ''}`}
 					onClick={() => enableLink && handleClick(post.id)}
+					data-testid={`wrap-image-${post.id}`}
 				>
 					<Filter
 						filter={post.filter}

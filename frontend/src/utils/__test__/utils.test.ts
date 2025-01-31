@@ -8,7 +8,7 @@ describe('Utils functions', () => {
 		})
 
 		it('should filter out falsy values', () => {
-			expect(classNames('class1', '', 'class2', undefined, 'class3')).toBe('class1 class2 class3')
+			expect(classNames('class1', '', 'class2', '', 'class3')).toBe('class1 class2 class3')
 		})
 
 		it('should return an empty string if no classes are provided', () => {

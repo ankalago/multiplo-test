@@ -1,5 +1,5 @@
 export interface IMultigram {
-	id?: number
+	id?: string
 	title: string
 	image: string
 	filter: FilterImage
