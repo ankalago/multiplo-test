@@ -1,5 +1,5 @@
 import { Post } from '../../application/Post/domain/Post'
-import { IPostCreateRepository } from '../../application/Post/domain/IPost'
+import { IPostCreateRepository, IPostUpdateRepository } from '../../application/Post/domain/IPost'
 
 export class FakePostRepository {
 	private posts: Post[] = [
@@ -18,6 +18,22 @@ export class FakePostRepository {
 	async create(post: IPostCreateRepository): Promise<Post> {
 		this.posts.push(post)
 		return new Post(post.title, post.image, post.id)
+	}
+	async updateById(id: string, post: IPostUpdateRepository): Promise<Post | null> {
+		let postData = this.posts.find((post) => post.id === id)
+		if (!postData) {
+			return null
+		}
+		let updatePost = new Post(
+			postData.title,
+			postData.image,
+			postData.filter,
+			postData.id,
+			postData.createdAt,
+			post.like,
+		)
+		this.posts.filter((post) => post.id !== id).push(updatePost)
+		return updatePost
 	}
 	async findById(id: string) {
 		let post = this.posts.find((post) => post.id === id)
