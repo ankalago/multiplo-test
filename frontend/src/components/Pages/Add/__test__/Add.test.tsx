@@ -1,11 +1,13 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent, act, waitFor } from '@testing-library/react'
+import '@testing-library/jest-dom'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
 import { configureStore } from '@reduxjs/toolkit'
 import Add from '../Add'
 import multigramSlice from '../../../../store/states/multigram'
-import { AppStore } from '../../../../store/store'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import MockAdapter from 'axios-mock-adapter'
 
 jest.mock('react-i18next', () => ({
 	useTranslation: () => ({
@@ -18,11 +20,9 @@ jest.mock('react-router-dom', () => ({
 	useNavigate: jest.fn(),
 }))
 
-jest.mock('../../../../services/useServiceFetch.ts', () => ({
-	useServiceFetch: () => ({
-		createPost: jest.fn().mockResolvedValue({}),
-	}),
-}))
+const mock = new MockAdapter(axios)
+mock.onGet('http://localhost:3000/api/v1/post').reply(200, { data: 'response' })
+mock.onPost('http://localhost:3000/api/v1/post').reply(200, { data: 'response' })
 
 const renderComponent = (store: any) =>
 	render(
@@ -34,7 +34,7 @@ const renderComponent = (store: any) =>
 	)
 
 describe('Add Component', () => {
-	let store: AppStore
+	let store: any
 	const mockNavigate = useNavigate as jest.Mock
 
 	beforeEach(() => {
@@ -46,23 +46,31 @@ describe('Add Component', () => {
 				multigram: [],
 			},
 		})
-		const navigateMock = jest.fn()
-		mockNavigate.mockReturnValue(navigateMock)
 	})
 
-	it('should render the Add component', () => {
-		renderComponent(store)
-		expect(screen.getByText(/Lofi/)).toBeTruthy()
+	it('should render the Add component', async () => {
+		await act(async () => {
+			renderComponent(store)
+		})
+		expect(screen.getByText(/Lofi/)).toBeInTheDocument()
 	})
 
 	it('should add a new post', async () => {
-		renderComponent(store)
-		fireEvent.change(screen.getByTestId('title'), { target: { value: 'New Post' } })
-		fireEvent.change(screen.getByTestId('image'), { target: { value: 'New Image' } })
-		fireEvent.click(screen.getByTestId('submit'))
+		const navigateMock = jest.fn()
+		mockNavigate.mockReturnValue(navigateMock)
+
+		await act(async () => {
+			renderComponent(store)
+		})
+
+		await act(async () => {
+			fireEvent.change(screen.getByTestId('title'), { target: { value: 'New Post' } })
+			fireEvent.change(screen.getByTestId('image'), { target: { value: 'New Image' } })
+			fireEvent.click(screen.getByTestId('submit'))
+		})
 
 		await waitFor(() => {
-			expect(mockNavigate()).toHaveBeenCalledWith('/')
+			expect(navigateMock).toHaveBeenCalledWith('/')
 		})
 	})
 })

@@ -10,4 +10,7 @@ export default configureStore<AppStore>({
 	reducer: {
 		multigram: multigramSlice,
 	},
+	preloadedState: {
+		multigram: [],
+	},
 })

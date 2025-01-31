@@ -1,16 +1,26 @@
-import { render, screen } from '@testing-library/react'
+import { act, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { configureStore } from '@reduxjs/toolkit'
 import Detail from '../Detail'
 import multigramSlice from '../../../../store/states/multigram'
 import { AppStore } from '../../../../store/store'
+import MockAdapter from 'axios-mock-adapter'
+import axios from 'axios'
+
+const multigram = [
+	{ id: '1', title: 'Post 1', image: 'Image 1', filter: 'filterOriginal', like: false, createdAt: '2023-01-01' },
+	{ id: '2', title: 'Post 2', image: 'Image 2', filter: 'filterOriginal', like: false, createdAt: '2023-01-02' },
+]
 
 jest.mock('react-i18next', () => ({
 	useTranslation: () => ({
 		t: (str: any) => str,
 	}),
 }))
+const mock = new MockAdapter(axios)
+mock.onGet('http://localhost:3000/api/v1/post').reply(200, multigram)
+mock.onPost('http://localhost:3000/api/v1/post').reply(200, { data: 'response' })
 
 const renderComponent = (store: any) =>
 	render(
@@ -32,21 +42,20 @@ describe('Detail Component', () => {
 				multigram: multigramSlice,
 			},
 			preloadedState: {
-				multigram: [
-					{ id: '1', title: 'Post 1', image: 'Image 1', filter: 'filterOriginal' },
-					{ id: '2', title: 'Post 2', image: 'Image 2', filter: 'filterOriginal' },
-				],
+				multigram: multigram,
 			},
 		})
 	})
 
-	it('should render the Detail component with a post', () => {
+	it('should render the Detail component with a post', async () => {
 		renderComponent(store)
-		expect(screen.getByText(/Post 1/)).toBeInTheDocument()
-		expect(screen.getByTestId('filter-Original')).toBeInTheDocument()
+		await act(async () => {
+			expect(screen.getByText(/Post 1/)).toBeInTheDocument()
+			expect(screen.getByTestId('filter-Original')).toBeInTheDocument()
+		})
 	})
 
-	it('should return null if no post is found', () => {
+	it('should return null if no post is found', async () => {
 		store = configureStore({
 			reducer: {
 				multigram: multigramSlice,
@@ -58,6 +67,8 @@ describe('Detail Component', () => {
 
 		const { container } = renderComponent(store)
 
-		expect(container.firstChild).toBeNull()
+		await act(async () => {
+			expect(container.firstChild).toBeNull()
+		})
 	})
 })

@@ -30,6 +30,7 @@ export class AxiosServices {
 			if (!data) return null
 			return data
 		} catch (error) {
+			console.error(error)
 			throw new Error('AxiosServices | GET')
 		}
 	}
