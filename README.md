@@ -1,6 +1,6 @@
 # Test Multiplo
 
-## Paul Jácome - Barcelona / Spain - Software Web Developer
+## Paul Jácome - Barcelona / Spain - Full Stack Developer
 
 **[Linkedin Profile](https://bit.ly/paul-jacome-linkedin)**
 
@@ -10,15 +10,17 @@
 
 **[Whatsapp Profile](https://bit.ly/paul-jacome-es-whatsapp)**
 
-## Link App Vercel
-
-```
-https://multiplo-test-paul-jacome.vercel.app/
-```
-
 ## Coverage (min 90%)
 
-![Coverage](https://github.com/ankalago/multiplo-test/blob/main/screenshot-coverage.png?raw=true)
+### Backend
+![Coverage](https://github.com/ankalago/multiplo-test/blob/main/coverage-backend.png?raw=true)
+
+### Frontend
+#### Unit testing
+![Coverage](https://github.com/ankalago/multiplo-test/blob/main/coverage-frontend.png?raw=true)
+
+#### E2E testing
+![Coverage](https://github.com/ankalago/multiplo-test/blob/main/test-e2e.png?raw=true)
 
 ## Install Dependencies
 
@@ -26,16 +28,16 @@ https://multiplo-test-paul-jacome.vercel.app/
 npm ci
 ```
 
+## Generate types of Prisma
+
+```bash
+cd backend/src/infrastructure/db/ && npx prisma generate && cd -
+```
+
 ## Run App
 
 ```
 npm run dev
-```
-
-## Enter URL
-
-```
-http://localhost:5173/
 ```
 
 ## Run unit test
@@ -47,24 +49,14 @@ npm run test
 ## Run unit coverage
 
 ```
-npm run coverage
+cd frontend && npm run e2e
 ```
 
 ## Run Cypress (visual)
 
-Before run the command should run the dev server (`npm run dev`)
+![Cypress](https://github.com/ankalago/multiplo-test/blob/main/e2e.gif?raw=true)
 
-```
-npx cypress open
-```
-
-## Run e2e
-
-```
-npm run e2e
-```
-
-![Cypress](https://github.com/ankalago/multiplo-test/blob/main/multigram.cy.gif?raw=true)
+** Before to run e2e test, should run the developer server (`npm run dev`)
 
 # Clarifications
 
@@ -74,6 +66,12 @@ The default state is with an item (Silver Island)
 
 The modules and technologies used:
 
+#### Backend
+- Hexagonal architecture
+- Prisma (ORM)
+- Jest (test)
+
+#### Frontend
 - Clean Code architecture
 - Redux and Redux Toolkit (app data management)
 - React Hook Form (management data form)
@@ -82,16 +80,16 @@ The modules and technologies used:
 
 ## Other optionals images 😅 **[My Unsplash Profile](https://bit.ly/unsplash-paul-jacome)**
 
-#### Silver Island
+#### Ambato summit / Maximum summit
 
 ```
-https://images.unsplash.com/photo-1728336844582-08f10f7e8cdf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=webp&fit=crop&w=900&q=100
+https://images.unsplash.com/photo-1728336844582-08f10f7e8cdf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=webp&fit=crop&w=1000&q=100
 ```
 
 #### Cotopaxi Volcano
 
 ```
-https://images.unsplash.com/photo-1728336976695-858ae8e9343e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=webp&fit=crop&w=900&q=100
+https://images.unsplash.com/photo-1675954099131-b4f0d2b3945e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=webp&fit=crop&w=900&q=100
 ```
 
 #### Blue Booby
