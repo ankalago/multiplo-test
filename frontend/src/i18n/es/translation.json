@@ -1,0 +1,17 @@
+{
+	"labels": {
+		"image": "Ingrese la url de una imagen",
+		"name": "Proporcione un nombre",
+		"button": "Publicar ahora!"
+	},
+	"texts": {
+		"posted": "Publicado hace",
+		"few_seconds_ago": "pocos segusndos atrás",
+		"seconds_ago": "segundos atrás",
+		"about_minute_ago": "hace alrededor de un minuto",
+		"minutes_ago": "minutos atrás",
+		"hours_ago": "horas atrás",
+		"yesterday": "ayer",
+		"preposition": "en"
+	}
+}

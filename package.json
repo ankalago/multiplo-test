@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm test -ws",
+    "back:dev": "cd backend && npm run dev",
+    "front:dev": "cd frontend && sleep 1 && npm run dev",
+    "build": "echo \"No build script defined\"",
+    "dev": "npm-run-all build --parallel back:dev front:dev",
     "format": "npx biome format --write ./backend/ ./frontend/"
   },
   "workspaces": [
@@ -15,6 +19,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@biomejs/biome": "1.9.4"
+    "@biomejs/biome": "1.9.4",
+    "npm-run-all": "^4.1.5"
   }
 }

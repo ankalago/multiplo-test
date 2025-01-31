@@ -1,0 +1,17 @@
+{
+	"labels": {
+		"image": "Enter an image URL",
+		"name": "Give it a name",
+		"button": "Post Now!"
+	},
+	"texts": {
+		"posted": "Posted",
+		"few_seconds_ago": "few seconds ago",
+		"seconds_ago": "few seconds ago",
+		"about_minute_ago": "about a minute ago",
+		"minutes_ago": "minutes ago",
+		"hours_ago": "hours ago",
+		"yesterday": "yesterday",
+		"preposition": "at"
+	}
+}

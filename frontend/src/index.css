@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@theme {
+	--font-oleo: "Oleo Script", sans-serif;
+	--font-sans: "Funnel Display", sans-serif;
+	--color-multigram: #e1306c;
+}
