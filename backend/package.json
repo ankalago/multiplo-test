@@ -6,7 +6,8 @@
 	"scripts": {
 		"dev": "ts-node src/index.ts",
 		"format": "npx biome format --write ./",
-		"test": "tsc && jest --coverage"
+		"test": "tsc && jest --coverage",
+		"build": "tsc"
 	},
 	"prisma": {
 		"schema": "src/infrastructure/db/schema.prisma"

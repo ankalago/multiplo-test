@@ -23,3 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 /**/coverage/
+
+# cypress
+/**/cypress/downloads/
+/**/cypress/videos/
+/**/cypress/screenshots/
+/**/cypress/fixtures/
+/**/cypress/plugins/
