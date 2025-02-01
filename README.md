@@ -69,6 +69,7 @@ The modules and technologies used:
 #### Backend
 - Hexagonal architecture
 - Prisma (ORM)
+- Database: (SQLite)
 - Jest (test)
 
 #### Frontend
