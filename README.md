@@ -10,16 +10,67 @@
 
 **[Whatsapp Profile](https://bit.ly/paul-jacome-es-whatsapp)**
 
+## Link Fontend
+
+```
+https://multiplo-test-frontend.vercel.app
+```
+
+### Link Backend
+
+```
+https://multiplo-test-backend.up.railway.app
+```
+
+#### cURLs API - GET/POST/PATCH
+
+#### GetAll
+
+```
+curl --location 'https://multiplo-test-backend.up.railway.app/api/v1/post'
+```
+
+#### GetOne
+
+```
+curl --location 'http://localhost:3000/api/v1/post/e2edb17a-5f60-4572-989d-35aa6c3cd1ef'
+```
+
+#### Create
+
+```
+curl --location 'http://localhost:3000/api/v1/post' \
+--header 'Content-Type: application/json' \
+--data '{
+    "title": "new post 3",
+    "image": "https://images.unsplash.com/photo-1675954099278-9351e08c7cc3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=webp&fit=crop&w=3024&q=100",
+    "filter": "filterOriginal"
+}'
+```
+
+#### Update
+
+```
+curl --location --request PATCH 'http://localhost:3000/api/v1/post/e2edb17a-5f60-4572-989d-35aa6c3cd1ef' \
+--data '{
+    "like": false
+}'
+```
+
 ## Coverage (min 90%)
 
 ### Backend
+
 ![Coverage](https://github.com/ankalago/multiplo-test/blob/main/coverage-backend.png?raw=true)
 
 ### Frontend
+
 #### Unit testing
+
 ![Coverage](https://github.com/ankalago/multiplo-test/blob/main/coverage-frontend.png?raw=true)
 
 #### E2E testing
+
 ![Coverage](https://github.com/ankalago/multiplo-test/blob/main/test-e2e.png?raw=true)
 
 ## Install Dependencies
@@ -67,12 +118,14 @@ The default state is with an item (Silver Island)
 The modules and technologies used:
 
 #### Backend
+
 - Hexagonal architecture
 - Prisma (ORM)
 - Database: (SQLite)
 - Jest (test)
 
 #### Frontend
+
 - Clean Code architecture
 - Redux and Redux Toolkit (app data management)
 - React Hook Form (management data form)
