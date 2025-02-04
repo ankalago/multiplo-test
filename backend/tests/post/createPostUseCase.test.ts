@@ -1,8 +1,8 @@
 import 'reflect-metadata'
 import { container } from 'tsyringe'
 import { FakePostRepository } from '../fakes/fakePostRepository'
-import { CreatePostUseCase } from '../../application/Post/usecases/createPost'
-import { PostRepositoryPort } from '../../application/Post/port/PostRepositoryPort'
+import { CreatePostUseCase } from '../../src/application/Post/usecases/createPost'
+import { PostRepositoryPort } from '../../src/application/Post/port/PostRepositoryPort'
 
 describe('Create Post', () => {
 	let postRepository: PostRepositoryPort

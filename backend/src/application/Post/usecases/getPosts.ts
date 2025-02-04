@@ -2,9 +2,9 @@ import 'reflect-metadata'
 import { inject, injectable } from 'tsyringe'
 import { PostMapper } from '../../../adapter/mappers/PostMapper'
 import { PostRepositoryPort } from '../port/PostRepositoryPort'
-import { UnCaughtError } from '../../../src/errors/Uncaught'
+import { UnCaughtError } from '../../../errors/Uncaught'
 import { GetPostsPort } from '../port/GetPostsPort'
-import { NotFoundError } from '../../../src/errors/NotFound'
+import { NotFoundError } from '../../../errors/NotFound'
 
 @injectable()
 export class GetPostsUseCase implements GetPostsPort {

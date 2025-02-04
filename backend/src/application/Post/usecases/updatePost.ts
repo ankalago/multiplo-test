@@ -6,9 +6,9 @@ import { v4 as uuidV4 } from 'uuid'
 import { PostMapper } from '../../../adapter/mappers/PostMapper'
 import { PostRepositoryPort } from '../port/PostRepositoryPort'
 import { CreatePostPort } from '../port/CreatePostPort'
-import { UnCaughtError } from '../../../src/errors/Uncaught'
+import { UnCaughtError } from '../../../errors/Uncaught'
 import { UpdatePostPort } from '../port/UpdatePostPort'
-import { NotFoundError } from '../../../src/errors/NotFound'
+import { NotFoundError } from '../../../errors/NotFound'
 
 @injectable()
 export class UpdatePostUseCase implements UpdatePostPort {

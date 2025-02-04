@@ -1,10 +1,10 @@
 import 'reflect-metadata'
 import { container } from 'tsyringe'
-import { CreatePostUseCase } from './application/Post/usecases/createPost'
-import { PostRepository } from './adapter/Post/PostRepository'
-import { PostController } from './adapter/Post/PostController'
-import { GetPostsUseCase } from './application/Post/usecases/getPosts'
-import { UpdatePostUseCase } from './application/Post/usecases/updatePost'
+import { CreatePostUseCase } from './src/application/Post/usecases/createPost'
+import { PostRepository } from './src/adapter/Post/PostRepository'
+import { PostController } from './src/adapter/Post/PostController'
+import { GetPostsUseCase } from './src/application/Post/usecases/getPosts'
+import { UpdatePostUseCase } from './src/application/Post/usecases/updatePost'
 
 container.registerSingleton('CreatePostUseCase', CreatePostUseCase)
 container.registerSingleton('UpdatePostUseCase', UpdatePostUseCase)

@@ -1,5 +1,5 @@
-import { Post } from '../../application/Post/domain/Post'
-import { IPostCreateRepository, IPostUpdateRepository } from '../../application/Post/domain/IPost'
+import { Post } from '../../src/application/Post/domain/Post'
+import { IPostCreateRepository, IPostUpdateRepository } from '../../src/application/Post/domain/IPost'
 
 export class FakePostRepository {
 	private posts: Post[] = [

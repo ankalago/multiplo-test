@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
-import { httpLogger } from '../utls/logger'
+import { httpLogger } from './utls/logger'
 import router from './routers/routers'
 
 const app = express()

@@ -1,8 +1,8 @@
 import 'reflect-metadata'
 import { container } from 'tsyringe'
 import { FakePostRepository } from '../fakes/fakePostRepository'
-import { PostRepositoryPort } from '../../application/Post/port/PostRepositoryPort'
-import { GetPostsUseCase } from '../../application/Post/usecases/getPosts'
+import { PostRepositoryPort } from '../../src/application/Post/port/PostRepositoryPort'
+import { GetPostsUseCase } from '../../src/application/Post/usecases/getPosts'
 import { UnCaughtError } from '../../src/errors/Uncaught'
 
 describe('Get Posts', () => {

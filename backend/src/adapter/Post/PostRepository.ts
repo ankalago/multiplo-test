@@ -4,9 +4,9 @@ import { IPostCreateRepository, IPostUpdateRepository } from '../../application/
 import { Post } from '../../application/Post/domain/Post'
 import { PrismaClient } from '@prisma/client'
 import { PostRepositoryPort } from '../../application/Post/port/PostRepositoryPort'
-import db from '../../src/infrastructure/db/db'
-import { UnCaughtError } from '../../src/errors/Uncaught'
-import { NotFoundError } from '../../src/errors/NotFound'
+import db from '../../infrastructure/db/db'
+import { UnCaughtError } from '../../errors/Uncaught'
+import { NotFoundError } from '../../errors/NotFound'
 
 @injectable()
 export class PostRepository implements PostRepositoryPort {

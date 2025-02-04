@@ -1,5 +1,5 @@
 import { IPost, PostId, PostTitle, PostImage, PostLike, PostFilter } from './IPost'
-import { UnprocessableError } from '../../../src/errors/Unprocessable'
+import { UnprocessableError } from '../../../errors/Unprocessable'
 
 export class Post implements IPost {
 	public id?: PostId
